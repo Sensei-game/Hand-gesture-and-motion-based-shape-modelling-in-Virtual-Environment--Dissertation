@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public struct Gesture
+[System.Serializable]
+public struct Gestures
 {
     public string name;
     public List<Vector3> Data_line;
@@ -13,18 +14,20 @@ public struct Gesture
 public class Hand_Detection : MonoBehaviour
 {
 
-    public float value = 0.1f;
+   // public float value = 0.1f;
     public OVRSkeleton skeleton;
-    public List<Gesture> Gestures;
+    public List<Gestures> Gestures;
+
     public bool allow_input = true;
+
     private List<OVRBone> point_Bones;
-    private Gesture lastGesture;
+    private Gestures lastGesture;
 
     // Start is called before the first frame update
     void Start()
     {
         point_Bones = new List<OVRBone>(skeleton.Bones);
-        lastGesture = new Gesture();
+        lastGesture = new Gestures();
     }
 
     // Update is called once per frame
@@ -43,13 +46,13 @@ public class Hand_Detection : MonoBehaviour
     //Capture Gestures Method
    void Save_Gesture()
     {
-        Gesture gesture = new Gesture();
+        Gestures gesture = new Gestures();
         gesture.name = "New Gesture";
         List<Vector3> data = new List<Vector3>();
 
         foreach(var point in point_Bones)
         {
-            //semi-accurate position, relative to the root position
+            //semi-accurate position, relative to the position of hand
             data.Add(skeleton.transform.InverseTransformPoint(point.Transform.position));
         }
         gesture.Data_line = data;
