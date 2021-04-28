@@ -1,11 +1,9 @@
-using System;
-
-namespace Gesture_Recognition
+namespace Recognizer
 {
     public class Point
     {
         public float X, Y;
-        public int ID;      
+        public int ID;
 
         public Point(float x, float y, int id)
         {
@@ -15,3 +13,4 @@ namespace Gesture_Recognition
         }
     }
 }
+

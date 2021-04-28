@@ -1,19 +1,20 @@
 ﻿using System.Collections;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-//using PDollarGestureRecognizer;
-using Gesture_Recognition;
-
+using UnityEngine.Events;
+using Recognizer;
 
 public class Position_Detection : MonoBehaviour
 {
+    private List<Vector3> list = new List<Vector3>();
+    private List<Gesture_Maths> list_g = new List<Gesture_Maths>();
+
     public float Value = 0.1f;
 
     private bool move = false;
     public Transform Root_pos;
 
-    private List<Vector3> list = new List<Vector3>();
-    private List<Gesture_Maths> list_g = new List<Gesture_Maths>();
 
     public float nextPos_space = 0.05f;
     public GameObject filler_Space;
@@ -21,10 +22,17 @@ public class Position_Detection : MonoBehaviour
     public bool allow_input = true;
     public string Capture_Name;
 
+    public float error_Margin = 0.9f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //this saves it in AppData/LocalLow/DefalutCompany/VR SOFTWARE test, barely made it work
+        string[] Xmlfile = Directory.GetFiles(Application.persistentDataPath, "*.xml");
+        foreach(var g in Xmlfile)
+        {
+            list_g.Add(Save_Gesture_File.From_file(g));
+        }
     }
 
     // Update is called once per frame
@@ -87,12 +95,22 @@ public class Position_Detection : MonoBehaviour
         {
             point_g.Name = Capture_Name;
             list_g.Add(point_g);
+
+            //Try to save gestures into an XML file, maybe it works
+            string string_file = Application.persistentDataPath + "/" + Capture_Name + ".xml";
+            Save_Gesture_File.Save_Gesture(p_list, Capture_Name, string_file);
         }
         else
         {
             //No capturing, move to recognition
             Recognition recogniion = Point_Dist.Compare(point_g, list_g.ToArray());
             Debug.Log(recogniion.Gesture_Name + recogniion.Percentage);
+
+            //If the gesture is more similar than the error margin, go on and call
+            if(recogniion.Percentage > error_Margin)
+            {
+                Succesfully_Recognized.Invoke(recogniion.Gesture_Name);
+            }
         }
     }
 
@@ -113,4 +131,13 @@ public class Position_Detection : MonoBehaviour
         }
        
     }
+
+
+    //Unity event 
+    [System.Serializable]
+    public class UnityStringEvent : UnityEvent<string>
+    {
+
+    }
+    public UnityStringEvent Succesfully_Recognized;
 }

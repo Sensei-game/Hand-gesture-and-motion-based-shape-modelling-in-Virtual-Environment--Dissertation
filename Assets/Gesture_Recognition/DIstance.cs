@@ -1,6 +1,6 @@
 using System;
 
-namespace Gesture_Recognition
+ namespace Recognizer
 {
     public class DIstance
     {
@@ -16,3 +16,4 @@ namespace Gesture_Recognition
         }
     }
 }
+

@@ -1,6 +1,9 @@
-﻿namespace Gesture_Recognition {
+﻿namespace Recognizer
+{
 
-	public struct Recognition {
+
+	public struct Recognition
+    {
 
 		public string Gesture_Name;
 		public float Percentage;

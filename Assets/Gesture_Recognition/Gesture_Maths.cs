@@ -1,15 +1,14 @@
 using System;
 
-namespace Gesture_Recognition
+namespace Recognizer
 {
-
     public class Gesture_Maths
     {
-        public Point[] Points = null;            
-        public string Name = "";                 
+        public Point[] Points = null;
+        public string Name = "";
         private const int Sample = 32;
-    
-        //Constructor
+
+        //Constructor for incmoing points
         public Gesture_Maths(Point[] points, string gestureName = "")
         {
             this.Name = gestureName;
@@ -21,31 +20,36 @@ namespace Gesture_Recognition
         // Increase the MAX and MIN of a Gesture
         private Point[] Scale(Point[] points)
         {
-            float Min_X = float.MaxValue, Min_Y = float.MaxValue, Max_X = float.MinValue, Max_Y = float.MinValue;
+            float Min_X = float.MaxValue;
+            float Min_Y = float.MaxValue;
+            float Max_X = float.MinValue;
+            float Max_Y = float.MinValue;
 
+            //Not very good and quite repetiive, but this will have to do
             for (int i = 0; i < points.Length; i++)
             {
                 if (Min_X > points[i].X)
-                { 
+                {
                     Min_X = points[i].X;
                 }
                 if (Min_Y > points[i].Y)
-                { 
+                {
                     Min_Y = points[i].Y;
                 }
                 if (Max_X < points[i].X)
-                { 
-                    Max_X = points[i].X; 
+                {
+                    Max_X = points[i].X;
                 }
                 if (Max_Y < points[i].Y)
                 {
-                    Max_Y = points[i].Y; 
+                    Max_Y = points[i].Y;
                 }
             }
 
             Point[] New_points = new Point[points.Length];
 
             float scale = Math.Max(Max_X - Min_X, Max_Y - Min_Y);
+            //Create new points with the new min and max
 
             for (int i = 0; i < points.Length; i++)
             {
@@ -54,7 +58,7 @@ namespace Gesture_Recognition
 
             return New_points;
         }
-        
+
         // One Point made out of one position modifies all the positions of the whole GEsture
         private Point[] Translate(Point[] points, Point One_Point)
         {
@@ -64,7 +68,7 @@ namespace Gesture_Recognition
             {
                 newPoints[i] = new Point(points[i].X - One_Point.X, points[i].Y - One_Point.Y, points[i].ID);
             }
-                
+
             return newPoints;
         }
 
@@ -91,7 +95,7 @@ namespace Gesture_Recognition
 
             int Points_Number = 1;
 
-            float length = PathLength(points) / (n - 1); 
+            float length = PathLength(points) / (n - 1);
 
             float MAX_Distance = 0;
 
@@ -156,9 +160,9 @@ namespace Gesture_Recognition
                 {
                     length += DIstance.Distance(points[i - 1], points[i]);
                 }
-                    
+
             }
-                
+
             return length;
         }
 
