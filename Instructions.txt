@@ -1,0 +1,24 @@
+Recommend using Unity with Oculus Integration imported in an empty project.
+
+Essential files:
+
+ Unarchive the Gesture_Recognition folder inside Assets folder.
+ Unarchive the files Hand_Detection.cs, Position_Detection.cs, and Spawn_3D_Model.cs
+
+ Unarchive folder Saved_Captured Gestures to check already existing gestures saved(some are gestures with the same name that is why they are numbered).
+
+Inside Unity:
+
+ Create an empty game object for each one of the .cs files and link the scripts to them, except for those in Gesture_recognition. 
+
+  In the game object of Position_Detection.cs check the allow_input to capture gestures, and uncheck it for the recognition system. Give a clear name in the Capture_Name field for each gesture before capturing the gestures, filler_Space need a 3D model for the trajectory visualization(i.e. spheres). error_Margin is set at a high value for debugging reasons, feel free to play around with it, default is 0.85.
+
+In order to check your captured gestures go to Users/Admin(Name)/AppData/LocalLow/Unity/NameofProject, you will xml fils with the names of the gestures.
+
+  In the game object for Position_Detection.cs link the Succesfully_recognized UnityStringEvent, to the game object of Spawn_3D_Model.cs(iniide which you should add a number of instances for the gestures, with exact names. Each one must have their own 3D model limked to a MEsh Renderer and texture linked to Mesh Filter).
+ 
+  The game onject for Spawn_3D_Model.cs should have as amny instances as tehre are gestures captured, with their exact names,
+
+  
+
+ 

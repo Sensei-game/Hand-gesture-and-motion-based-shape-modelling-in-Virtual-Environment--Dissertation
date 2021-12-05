@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Gesture Name = "O">
+	<ID>
+		<Point X = "341,5868" Y = "145,3539" T = "0" Pressure = "0" />
+		<Point X = "932,6976" Y = "941,9688" T = "0" Pressure = "0" />
+		<Point X = "853,4564" Y = "935,4449" T = "0" Pressure = "0" />
+		<Point X = "772,4088" Y = "904,4124" T = "0" Pressure = "0" />
+		<Point X = "707,4075" Y = "854,9272" T = "0" Pressure = "0" />
+		<Point X = "658,2355" Y = "781,4708" T = "0" Pressure = "0" />
+		<Point X = "628,3734" Y = "670,7084" T = "0" Pressure = "0" />
+		<Point X = "655,9432" Y = "574,4635" T = "0" Pressure = "0" />
+		<Point X = "695,8394" Y = "504,4528" T = "0" Pressure = "0" />
+		<Point X = "765,3555" Y = "450,6371" T = "0" Pressure = "0" />
+		<Point X = "866,485" Y = "434,6841" T = "0" Pressure = "0" />
+		<Point X = "974,4817" Y = "455,5869" T = "0" Pressure = "0" />
+		<Point X = "1043,361" Y = "532,3795" T = "0" Pressure = "0" />
+		<Point X = "1075,177" Y = "597,278" T = "0" Pressure = "0" />
+		<Point X = "1078,862" Y = "701,1008" T = "0" Pressure = "0" />
+		<Point X = "1063,966" Y = "767,6182" T = "0" Pressure = "0" />
+		<Point X = "1014,643" Y = "848,7498" T = "0" Pressure = "0" />
+		<Point X = "956,1671" Y = "883,2885" T = "0" Pressure = "0" />
+	</ID>
+</Gesture>
